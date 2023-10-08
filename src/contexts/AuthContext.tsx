@@ -128,7 +128,7 @@ export function AuthProvider({ children }: IAuthProvider) {
       schedules,
       date,
       handleSetDate,
-      isAuthenticated
+      isAuthenticated,
     }}>{children}</AuthContext.Provider>
   )
 }

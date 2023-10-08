@@ -26,6 +26,9 @@ export function Header() {
             <Link to={'/edit-profile'}>
               <li className='pl-[.7rem] pr-[.7rem] pt-4 hover:bg-teal-500 hover:rounded-md'>Editar Perfil</li>
             </Link>
+            <Link to={'/products'}>
+              <li className='pl-[.7rem] pr-[.7rem] pt-4 hover:bg-teal-500 hover:rounded-md'>Produtos</li>
+            </Link>
             <li className='pl-[.7rem] pr-[.7rem] pt-4 hover:bg-teal-500 hover:rounded-md' onClick={signOut}>Sair</li>
           </ul>
         </div>

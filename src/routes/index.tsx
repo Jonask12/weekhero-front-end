@@ -5,6 +5,7 @@ import { Dashboard } from "../page/Dashboard";
 import { Schedules } from "../page/Schedules";
 import { PrivateRoute } from "./PrivateRoutes";
 import { EditProfile } from "../page/EditProfile";
+import { Products } from "../page/Products";
 
 export function RouteApp() {
   return (
@@ -40,6 +41,15 @@ export function RouteApp() {
         element={
           <PrivateRoute>
             <EditProfile />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/products"
+        element={
+          <PrivateRoute>
+            <Products />
           </PrivateRoute>
         }
       />
