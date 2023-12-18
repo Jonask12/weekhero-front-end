@@ -1,7 +1,7 @@
 import { Header } from "../../components/Header";
 import { Product } from "../../components/Product";
 import { useEffect, useState } from "react";
-
+import { toast } from 'react-toastify';
 interface IProducts {
   id: number;
   name: string;
@@ -9,12 +9,17 @@ interface IProducts {
 }
 import  { products_db }  from '../../db';
 
-const buyProduct = () => {
-  alert('Page does not exists')
-}
-
 export function Products() {
   const [products, setProducts] = useState<Array<IProducts>>([]);
+
+  const buyProduct = () => {
+    alert('Page does not exists')
+  }
+
+  const deleteProduct = (id: number) => {
+    setProducts(prevProducts => prevProducts.filter(product => product.id !== id))
+    toast.success('Deletado com sucesso!');
+  }
 
   useEffect(() => {
     const getProducts = async () => {
@@ -38,9 +43,11 @@ export function Products() {
           return (
            <Product
            key={product.id}
+           id={product.id}
            name={product.name}
            price={product.price}
            buyProduct={() => buyProduct()}
+           deleteProduct={() => deleteProduct(product.id)}
            />
           )
         })}

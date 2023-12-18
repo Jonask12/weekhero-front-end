@@ -1,4 +1,4 @@
-import { forwardRef, ForwardRefRenderFunction, ReactNode } from 'react'
+import { forwardRef, ForwardRefRenderFunction } from 'react'
 
 interface IInput {
   placeholder: string;

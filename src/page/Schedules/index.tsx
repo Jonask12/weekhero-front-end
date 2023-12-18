@@ -3,14 +3,12 @@ import { Header } from "../../components/Header";
 import { InputSchedule } from "../../components/ImputSchedule";
 import { useAuth } from "../../hooks/auth";
 import { formatISO, getHours, parseISO, setHours } from "date-fns";
-import { useState } from "react";
 import { api } from "../../service/api";
 import { toast } from "react-toastify";
 import { isAxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 import * as yup from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup";
-import { AiOutlineClose } from 'react-icons/ai'
 
 interface IFormValues {
   date: string;
@@ -28,9 +26,8 @@ export function Schedules() {
     hour: yup.string().required('A hora é um campo obrigatório'),
   })
   const { register, handleSubmit, formState: {errors} } = useForm<IFormValues>({resolver: yupResolver(schema)});
-  const { availableSchedules, schedules, date, handleSetDate } = useAuth();
+  const { availableSchedules, schedules,  handleSetDate } = useAuth();
   const currentValue = new Date().toISOString().split('T')[0];
-  const [openMenu, setOpenMenu] = useState<boolean>(true);
 
   const filteredDate = availableSchedules.filter((hour) => {
     const isScheduleAvailable = !schedules.find((scheduleItem) => {
@@ -45,7 +42,7 @@ export function Schedules() {
   const submit = handleSubmit(async({ name, phone, date, hour }) => {
     const formattedDate = formatISO(setHours(parseISO(date), parseInt(hour)));
     try {
-     const result = await api.post(`/schedules/`, {
+     await api.post(`/schedules/`, {
         name,
         phone,
         date: formattedDate,
